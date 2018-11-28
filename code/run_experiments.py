@@ -34,23 +34,6 @@ def run_experiment(repeats=10, model_type=None, train_data=None, test_data=None,
     summarize_results(scores)
 
 
-def main():
-    dataset_root = "/media/ankurrc/new_volume/633_ml/project/code/dataset/UCI HAR Dataset/"
-    log_dir = "logs"
-    num_repeats = 3
-
-    dataset = Dataset(dataset_root=dataset_root)
-    train_X, train_y = dataset.load()
-    test_X, test_y = dataset.load(split="test")
-
-    models = ['conv_lstm']
-
-    for model_type in models:
-        _log_dir = os.path.join(log_dir, model_type)
-        run_experiment(repeats=num_repeats, model_type=model_type, train_data={"X": train_X, "y": train_y},
-                       test_data={"X": test_X, "y": test_y}, tb_log_dir=_log_dir)
-
-
 def get_model(name, log_dir=None, train_data=None, test_data=None):
     if name is 'lstm':
         model = LSTM_model(train_data=train_data,
@@ -65,6 +48,23 @@ def get_model(name, log_dir=None, train_data=None, test_data=None):
         raise KeyError("Key '{}' not implemented!".format(name))
 
     return model
+
+
+def main():
+    dataset_root = "/media/ankurrc/new_volume/633_ml/project/code/dataset/UCI HAR Dataset/"
+    log_dir = "logs"
+    num_repeats = 10
+
+    dataset = Dataset(dataset_root=dataset_root)
+    train_X, train_y = dataset.load()
+    test_X, test_y = dataset.load(split="test")
+
+    models = ['conv_lstm']
+
+    for model_type in models:
+        _log_dir = os.path.join(log_dir, model_type)
+        run_experiment(repeats=num_repeats, model_type=model_type, train_data={"X": train_X, "y": train_y},
+                       test_data={"X": test_X, "y": test_y}, tb_log_dir=_log_dir)
 
 
 if __name__ == "__main__":

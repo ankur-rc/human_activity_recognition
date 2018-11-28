@@ -9,7 +9,7 @@ from keras.callbacks import TensorBoard
 
 class Model(object):
 
-    def __init__(self, train_data=None, test_data=None, tb_log_dir=None, batch_size=128, epochs=15, verbosity=1):
+    def __init__(self, train_data=None, test_data=None, tb_log_dir=None, batch_size=128, epochs=25, verbosity=1):
         self.verbose = verbosity
         self.epochs = epochs
         self.batch_size = batch_size
