@@ -5,6 +5,7 @@ Author: ankurrc
 '''
 from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
+from keras.callbacks import TensorBoard
 
 from model import Model
 from data import Dataset
@@ -17,8 +18,9 @@ class LSTM_model(Model):
         super().__init__(train_data=train_data, test_data=test_data)
         self.build()
 
-    def evaluate(self):
-        callbacks = [F1_metrics()]
+    def evaluate(self, log_dir=None):
+        callbacks = [F1_metrics(), TensorBoard(
+            log_dir=log_dir, write_grads=True, write_graph=True, histogram_freq=3)]
         self.model.fit(self.train_X, self.train_y, epochs=self.epochs,
                        batch_size=self.batch_size, verbose=self.verbose, validation_split=0.2, callbacks=callbacks)
         # evaluate model
