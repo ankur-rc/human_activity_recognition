@@ -1,3 +1,8 @@
 # do not commit the dataset
 code/dataset
-notebooks/.ipynb_checkpoints
+
+# no need to save checkpoints 
+*/.ipynb_checkpoints
+
+# editor specific files
+code/.vscode
