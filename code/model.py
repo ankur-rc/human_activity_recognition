@@ -11,9 +11,9 @@ class Model(object):
         self.verbose = 1
         self.epochs = 15
         self.batch_size = 1
-        self.n_timesteps = train_data.X.shape[1]
-        self.n_features = train_data.X.shape[2]
-        self.n_outputs = train_data.y.shape[1]
+        self.n_timesteps = train_data["X"].shape[1]
+        self.n_features = train_data["X"].shape[2]
+        self.n_outputs = train_data["y"].shape[1]
 
     def build(self):
         raise NotImplementedError("Use a subclass!")

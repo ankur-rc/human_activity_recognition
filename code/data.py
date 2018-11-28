@@ -37,7 +37,7 @@ class Dataset(object):
         data = np.dstack(data)
         return data
 
-    def load_dataset(self, split="train"):
+    def load(self, split="train"):
         """
         Loads X and y.
         """
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     dataset_root = "/media/ankurrc/new_volume/633_ml/project/code/dataset/UCI HAR Dataset/"
     dataset = Dataset(dataset_root=dataset_root)
 
-    train_X, train_y = dataset.load_dataset()
-    test_X, test_y = dataset.load_dataset(split="test")
+    train_X, train_y = dataset.load()
+    test_X, test_y = dataset.load(split="test")
 
     print(train_X.shape, train_y.shape, test_X.shape, test_y.shape)
