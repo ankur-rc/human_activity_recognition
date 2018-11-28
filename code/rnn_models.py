@@ -3,18 +3,28 @@ Created Date: Tuesday November 27th 2018
 Last Modified: Tuesday November 27th 2018 9:38:33 pm
 Author: ankurrc
 '''
-from keras.layers import Sequential, LSTM, Dense, Dropout
+from keras.models import Sequential
+from keras.layers import LSTM, Dense, Dropout
 
 from model import Model
 from data import Dataset
+from metrics import F1_metrics
 
 
-class LSTM(Model):
+class LSTM_model(Model):
 
     def __init__(self, train_data=None, test_data=None):
         super().__init__(train_data=train_data, test_data=test_data)
+        self.build()
 
     def evaluate(self):
+        callbacks = [F1_metrics()]
+        self.model.fit(self.train_X, self.train_y, epochs=self.epochs,
+                       batch_size=self.batch_size, verbose=self.verbose, validation_split=0.2, callbacks=callbacks)
+        # evaluate model
+        _, accuracy = self.model.evaluate(
+            self.test_X, self.test_y, batch_size=self.batch_size, verbose=self.verbose)
+        return accuracy
 
     def build(self):
         self.model = Sequential()

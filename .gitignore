@@ -6,3 +6,5 @@ code/dataset
 
 # editor specific files
 code/.vscode
+
+__pycache__
