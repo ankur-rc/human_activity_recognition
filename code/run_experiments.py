@@ -59,7 +59,7 @@ def main():
     train_X, train_y = dataset.load()
     test_X, test_y = dataset.load(split="test")
 
-    models = ['conv_lstm']
+    models = ['lstm', 'cnn_lstm', 'conv_lstm']
 
     for model_type in models:
         _log_dir = os.path.join(log_dir, model_type)
