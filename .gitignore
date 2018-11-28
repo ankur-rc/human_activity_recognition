@@ -1,2 +1,10 @@
 # do not commit the dataset
 code/dataset
+
+# no need to save checkpoints 
+*/.ipynb_checkpoints
+
+# editor specific files
+code/.vscode
+
+__pycache__
