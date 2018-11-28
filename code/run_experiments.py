@@ -6,7 +6,7 @@ Author: ankurrc
 import numpy as np
 import os
 
-from rnn_models import LSTM_model
+from rnn_models import LSTM_model, CNN_LSTM_model, ConvLSTM_model
 from data import Dataset
 
 from keras import backend as K
@@ -43,7 +43,7 @@ def main():
     train_X, train_y = dataset.load()
     test_X, test_y = dataset.load(split="test")
 
-    models = ['lstm']
+    models = ['conv_lstm']
 
     for model_type in models:
         _log_dir = os.path.join(log_dir, model_type)
@@ -55,6 +55,12 @@ def get_model(name, log_dir=None, train_data=None, test_data=None):
     if name is 'lstm':
         model = LSTM_model(train_data=train_data,
                            test_data=test_data, tb_log_dir=log_dir)
+    elif name is 'cnn_lstm':
+        model = CNN_LSTM_model(train_data=train_data,
+                               test_data=test_data, tb_log_dir=log_dir)
+    elif name is 'conv_lstm':
+        model = ConvLSTM_model(train_data=train_data,
+                               test_data=test_data, tb_log_dir=log_dir)
     else:
         raise KeyError("Key '{}' not implemented!".format(name))
 
