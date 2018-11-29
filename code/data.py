@@ -44,7 +44,7 @@ class Dataset(object):
 
         if split.lower() not in ["test", "train"]:
             raise AssertionError(
-                "split should be either of 'train') or 'test'")
+                "split should be either of 'train' or 'test'")
 
         files_root = os.path.join(
             self.dataset_root, "{prefix}/Inertial Signals/".format(prefix=split))
@@ -59,6 +59,11 @@ class Dataset(object):
         y = to_categorical(y)
 
         return X, y
+
+
+class HAPTDataset(object):
+    def __init__(self):
+        pass
 
 
 if __name__ == "__main__":
