@@ -4,7 +4,7 @@ Dataset: [UCI HAR](https://archive.ics.uci.edu/ml/datasets/human+activity+recogn
 
 ## Benchmark results
 ```
-python run_experiments.py -h
+python code/run_experiments.py -h
 ```
 ```
 usage: Run models on the UCI HAR dataset. [-h] [--dataset DATASET]
