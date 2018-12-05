@@ -49,23 +49,23 @@ def run_experiment(repeats=10, model_type=None, train_data=None, test_data=None,
 
 
 def get_model(name, log_dir=None, train_data=None, test_data=None):
-    if name is 'lstm':
+    if name == 'lstm':
         model = LSTM_model(train_data=train_data,
                            test_data=test_data, tb_log_dir=log_dir)
-    elif name is 'cnn_lstm':
+    elif name == 'cnn_lstm':
         model = CNN_LSTM_model(train_data=train_data,
                                test_data=test_data, tb_log_dir=log_dir)
-    elif name is 'conv_lstm':
+    elif name == 'conv_lstm':
         model = ConvLSTM_model(train_data=train_data,
                                test_data=test_data, tb_log_dir=log_dir)
-    elif name is 'simple_cnn':
+    elif name == 'simple_cnn':
         model = Simple_shallow_cnn(train_data=train_data,
                                    test_data=test_data, tb_log_dir=log_dir)
-    elif name is 'wavenet_cnn':
+    elif name == 'wavenet_cnn':
         model = Wavenet_deep_cnn(train_data=train_data,
                                  test_data=test_data, tb_log_dir=log_dir)
     else:
-        raise KeyError("Key '{}' not implemented!".format(name))
+        raise KeyError("Model '{}' not implemented!".format(name))
 
     return model
 
@@ -74,6 +74,8 @@ def main(args):
     dataset_root = args.dataset
     num_repeats = args.repeats
     models = args.models
+
+    print(models)
 
     log_dir = "logs"
     results_dir = "results"
@@ -106,7 +108,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--repeats", help="No. of repeats for each model", type=int, default=10)
     parser.add_argument("--models", help="List of models to evaluate on. Valid models are: [lstm, cnn_lstm, conv_lstm, simple_cnn, wavenet_cnn]",
-                        nargs='+', type=str)
+                        nargs='+')
 
     args = parser.parse_args()
     main(args)
