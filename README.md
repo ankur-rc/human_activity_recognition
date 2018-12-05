@@ -25,3 +25,8 @@ Get **Precision**, **Recall** and **F1** score for the models across 'repeats' r
 Output will be generated in the folder '*results*' and models will be saved in '*models*'.
 
 Also, tensorboard compatible training **logs** are generated for each run under the folder '*logs*' and subfolder 'model name'.
+
+## Baseline results
+```
+python code/baseline.py
+```
