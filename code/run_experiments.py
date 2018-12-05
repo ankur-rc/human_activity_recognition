@@ -8,6 +8,7 @@ import os
 import argparse
 
 from rnn_models import LSTM_model, CNN_LSTM_model, ConvLSTM_model
+from cnn_models import Simple_shallow_cnn, Wavenet_deep_cnn
 from data import Dataset
 
 from keras import backend as K
@@ -57,6 +58,12 @@ def get_model(name, log_dir=None, train_data=None, test_data=None):
     elif name is 'conv_lstm':
         model = ConvLSTM_model(train_data=train_data,
                                test_data=test_data, tb_log_dir=log_dir)
+    elif name is 'simple_cnn':
+        model = Simple_shallow_cnn(train_data=train_data,
+                                   test_data=test_data, tb_log_dir=log_dir)
+    elif name is 'wavenet_cnn':
+        model = Wavenet_deep_cnn(train_data=train_data,
+                                 test_data=test_data, tb_log_dir=log_dir)
     else:
         raise KeyError("Key '{}' not implemented!".format(name))
 
@@ -71,9 +78,6 @@ def main(args):
     log_dir = "logs"
     results_dir = "results"
     models_dir = "models"
-
-    print(args)
-    exit(0)
 
     dataset = Dataset(dataset_root=dataset_root)
     train_X, train_y = dataset.load()
