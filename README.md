@@ -35,3 +35,6 @@ python code/baseline.py
 ```
 jupyter notebook code/notebooks/EDA.ipynb
 ```
+
+## Android App
+Project build folder code/HARApp
