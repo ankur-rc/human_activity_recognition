@@ -30,3 +30,8 @@ Also, tensorboard compatible training **logs** are generated for each run under 
 ```
 python code/baseline.py
 ```
+
+## Data Analysis
+```
+jupyter notebook code/notebooks/EDA.ipynb
+```
