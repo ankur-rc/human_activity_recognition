@@ -3,8 +3,11 @@ Created Date: Tuesday November 27th 2018
 Last Modified: Tuesday November 27th 2018 9:23:41 pm
 Author: ankurrc
 '''
+import numpy as np
+
 from metrics import F1_metrics
 from keras.callbacks import TensorBoard
+from sklearn.metrics import precision_recall_fscore_support
 
 
 class Model(object):
@@ -35,6 +38,14 @@ class Model(object):
                        batch_size=self.batch_size, verbose=self.verbose, validation_split=0.2, callbacks=self.callbacks, shuffle=True)
 
         # evaluate model
-        _, accuracy = self.model.evaluate(
-            self.test_X, self.test_y, batch_size=self.batch_size, verbose=self.verbose)
-        return accuracy
+        pred_y = self.model.predict(
+            self.test_X, batch_size=self.batch_size, verbose=self.verbose)
+
+        pred_y = np.argmax(pred_y, axis=1)
+        target_y = np.argmax(self.test_y, axis=1)
+
+        # print(pred_y, target_y)
+
+        precision, recall, f1, _ = precision_recall_fscore_support(
+            target_y, pred_y, average="weighted")
+        return precision, recall, f1
