@@ -2,7 +2,7 @@
 code/dataset
 
 # no need to save checkpoints 
-*/.ipynb_checkpoint/s
+.ipynb_checkpoints
 
 # editor specific files
 code/.vscode
@@ -10,3 +10,5 @@ code/.vscode
 __pycache__
 
 */logs
+
+models

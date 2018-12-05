@@ -5,6 +5,7 @@ Author: ankurrc
 '''
 import numpy as np
 import os
+import argparse
 
 from rnn_models import LSTM_model, CNN_LSTM_model, ConvLSTM_model
 from data import Dataset
@@ -62,20 +63,21 @@ def get_model(name, log_dir=None, train_data=None, test_data=None):
     return model
 
 
-def main():
-    dataset_root = "/media/ankurrc/new_volume/633_ml/project/code/dataset/UCI HAR Dataset/"
-
-    num_repeats = 5
+def main(args):
+    dataset_root = args.dataset
+    num_repeats = args.repeats
+    models = args.models
 
     log_dir = "logs"
     results_dir = "results"
     models_dir = "models"
 
+    print(args)
+    exit(0)
+
     dataset = Dataset(dataset_root=dataset_root)
     train_X, train_y = dataset.load()
     test_X, test_y = dataset.load(split="test")
-
-    models = ['lstm', 'cnn_lstm', 'conv_lstm']
 
     for model_type in models:
         print(">>>>>>>>>>>>> Running experiments for '{}'".format(model_type))
@@ -94,4 +96,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser("Run models on the UCI HAR dataset.")
+    parser.add_argument(
+        "--dataset", help="Root path to UCI HAR dataset", type=str, default="UCI HAR Dataset/")
+    parser.add_argument(
+        "--repeats", help="No. of repeats for each model", type=int, default=10)
+    parser.add_argument("--models", help="List of models to evaluate on. Valid models are: [lstm, cnn_lstm, conv_lstm, simple_cnn, wavenet_cnn]",
+                        nargs='+', type=str)
+
+    args = parser.parse_args()
+    main(args)
