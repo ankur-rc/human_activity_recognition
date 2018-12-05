@@ -26,6 +26,12 @@ Output will be generated in the folder '*results*' and models will be saved in '
 
 Also, tensorboard compatible training **logs** are generated for each run under the folder '*logs*' and subfolder 'model name'.
 
+## LSTM-CRF Model
+```
+jupyter notebook code/notebooks/data_loader.ipynb
+jupyter notebook code/notebooks/LSTM-CRF.ipynb
+```
+
 ## Baseline results
 ```
 python code/baseline.py
