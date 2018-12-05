@@ -29,7 +29,7 @@ Also, tensorboard compatible training **logs** are generated for each run under 
 ## LSTM-CRF Model
 ```
 jupyter notebook code/notebooks/data_loader.ipynb
-jupyter notebook code/notebooks/LSTM-CRF.ipynb
+jupyter notebook code/notebooks/lstm_crf.ipynb
 ```
 
 ## Baseline results
